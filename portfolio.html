@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Portfolio - One Day Multimedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Theme (load first to prevent flash of wrong theme) -->
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-overlay { 
+            background-color: rgba(0, 0, 0, 0.6); 
+        }
+        /* Prevent hero images from bleeding outside their container */
+        section.relative { overflow: hidden; }
+        .whatsapp-float {
+            position: fixed; 
+            width: 60px; 
+            height: 60px; 
+            bottom: 40px; 
+            right: 40px;
+            background-color: #25d366; 
+            color: #FFF; 
+            border-radius: 50px; 
+            text-align: center;
+            font-size: 30px; 
+            box-shadow: 2px 2px 3px #999; 
+            z-index: 100;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            animation: bounce 2s infinite;
+        }
+        
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+        
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+        
+        .animate-slide-in-bottom {
+            animation: slideInFromBottom 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        .animate-zoom-in {
+            animation: zoomIn 0.6s ease-out forwards;
+        }
+        
+        /* Portfolio Items */
+        .portfolio-item {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portfolio-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.2), transparent);
+            transition: left 0.5s;
+            z-index: 1;
+        }
+        
+        .portfolio-item:hover::before {
+            left: 100%;
+        }
+        
+        /* Portfolio Image Overlay */
+        .portfolio-image {
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(220, 38, 38, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay-content {
+            text-align: center;
+            color: white;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay-content {
+            transform: translateY(0);
+        }
+        
+        /* Hero Section Animations */
+        .hero-title {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        
+        .hero-subtitle {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+        
+        /* Navigation Animations */
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #dc2626;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Button Animations */
+        .btn-animate {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-animate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-animate:hover::before {
+            left: 100%;
+        }
+        
+        .btn-animate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Image Hover Effects */
+        .image-hover {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .image-hover:hover::before {
+            left: 100%;
+        }
+        
+        .image-hover:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Portfolio Categories */
+        .portfolio-category {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .portfolio-category.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .portfolio-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Filter Buttons */
+        .filter-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+        
+        .filter-btn.active {
+            background-color: #dc2626;
+            color: white;
+        }
+        
+        /* Portfolio Stats */
+        .portfolio-stats {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .portfolio-stats.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .portfolio-stats:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(2) {
+            animation-delay: 1s;
+        }
+        
+        .floating-element:nth-child(3) {
+            animation-delay: 2s;
+        }
+        
+        /* Hidden portfolio items keep their space removed cleanly */
+        .portfolio-item.filtered-out {
+            display: none;
+        }
+        
+        /* Loading Animation */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots::after {
+            content: '';
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0%, 20% {
+                content: '';
+            }
+            40% {
+                content: '.';
+            }
+            60% {
+                content: '..';
+            }
+            80%, 100% {
+                content: '...';
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/0593187041" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-xl font-bold text-red-600 hover:text-red-700 transition-colors">ONE DAY</a>
+                        <a href="index.html" class="text-xl font-bold text-gray-800 hover:text-gray-900 transition-colors">MULTIMEDIA</a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:space-x-8">
+                    <a href="index.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                    <a href="about.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                    <a href="services.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Services</a>
+                    <a href="portfolio.html" class="nav-link border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Portfolio</a>
+                    <a href="contact.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="about.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
+                <a href="services.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
+                <a href="portfolio.html" class="bg-red-50 border-red-500 text-red-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Portfolio</a>
+                <a href="contact.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="relative bg-gray-900 py-24">
+        <div class="absolute inset-0 hero-overlay">
+            <img class="w-full h-full object-cover image-hover" src="https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Printing press machine">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="hero-title text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Our Portfolio
+            </h1>
+            <p class="hero-subtitle mt-6 max-w-lg text-xl text-gray-300 sm:max-w-3xl">
+                See samples of our recent work and the quality we deliver to our clients.
+            </p>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in-up">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Recent Work</h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    Browse through our latest projects and see the quality we deliver
+                </p>
+            </div>
+
+            <!-- Portfolio Filter Buttons -->
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <button class="filter-btn active px-6 py-2 rounded-full border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300" data-filter="all">
+                    All Projects
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 text-gray-600 hover:border-red-500 hover:text-red-500 transition-all duration-300" data-filter="printing">
+                    Digital Printing
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 text-gray-600 hover:border-red-500 hover:text-red-500 transition-all duration-300" data-filter="tshirts">
+                    T-Shirts
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 text-gray-600 hover:border-red-500 hover:text-red-500 transition-all duration-300" data-filter="large-format">
+                    Large Format
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 text-gray-600 hover:border-red-500 hover:text-red-500 transition-all duration-300" data-filter="packaging">
+                    Packaging
+                </button>
+            </div>
+
+            <div class="mt-10 portfolio-grid">
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Portfolio Item 1 -->
+                    <div class="portfolio-item" data-delay="0" data-category="printing">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                            <div class="portfolio-image relative">
+                                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1541140134513-85a161dc4a00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Business cards">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-overlay-content">
+                                        <i class="fas fa-search-plus text-3xl mb-2"></i>
+                                        <p class="text-sm font-medium">Click to enlarge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Business Cards</h3>
+                                <p class="mt-2 text-gray-600">Premium card stock with spot UV finish</p>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-calendar mr-2 text-red-500"></i>
+                                    <span>Completed: Dec 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Item 2 -->
+                    <div class="portfolio-item" data-delay="100" data-category="tshirts">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                            <div class="portfolio-image relative">
+                                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1579273166152-d7256a9c9f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="T-shirts">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-overlay-content">
+                                        <i class="fas fa-search-plus text-3xl mb-2"></i>
+                                        <p class="text-sm font-medium">Click to enlarge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Custom T-Shirts</h3>
+                                <p class="mt-2 text-gray-600">Screen printed cotton t-shirts</p>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-calendar mr-2 text-red-500"></i>
+                                    <span>Completed: Nov 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Item 3 -->
+                    <div class="portfolio-item" data-delay="200" data-category="printing">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                            <div class="portfolio-image relative">
+                                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Brochures">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-overlay-content">
+                                        <i class="fas fa-search-plus text-3xl mb-2"></i>
+                                        <p class="text-sm font-medium">Click to enlarge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Brochures</h3>
+                                <p class="mt-2 text-gray-600">Tri-fold brochures with full color printing</p>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-calendar mr-2 text-red-500"></i>
+                                    <span>Completed: Oct 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Item 4 -->
+                    <div class="portfolio-item" data-delay="300" data-category="large-format">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                            <div class="portfolio-image relative">
+                                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Banners">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-overlay-content">
+                                        <i class="fas fa-search-plus text-3xl mb-2"></i>
+                                        <p class="text-sm font-medium">Click to enlarge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Vinyl Banners</h3>
+                                <p class="mt-2 text-gray-600">Large format outdoor banners</p>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-calendar mr-2 text-red-500"></i>
+                                    <span>Completed: Sep 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Item 5 -->
+                    <div class="portfolio-item" data-delay="400" data-category="printing">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                            <div class="portfolio-image relative">
+                                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1925&q=80" alt="Flyers">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-overlay-content">
+                                        <i class="fas fa-search-plus text-3xl mb-2"></i>
+                                        <p class="text-sm font-medium">Click to enlarge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Flyers</h3>
+                                <p class="mt-2 text-gray-600">Full color flyers on premium paper</p>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-calendar mr-2 text-red-500"></i>
+                                    <span>Completed: Aug 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Item 6 -->
+                    <div class="portfolio-item" data-delay="500" data-category="packaging">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                            <div class="portfolio-image relative">
+                                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1600185369659-d3d687e9f2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" alt="Packaging">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-overlay-content">
+                                        <i class="fas fa-search-plus text-3xl mb-2"></i>
+                                        <p class="text-sm font-medium">Click to enlarge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Custom Packaging</h3>
+                                <p class="mt-2 text-gray-600">Branded boxes and packaging</p>
+                                <div class="mt-3 flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-calendar mr-2 text-red-500"></i>
+                                    <span>Completed: Jul 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center">
+                <a href="services.html" class="btn-animate inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700">
+                    View All Services
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Lightbox Modal ─────────────────────────────────────── -->
+    <div id="lb-backdrop" class="fixed inset-0 z-[9999] hidden" role="dialog" aria-modal="true" aria-label="Image lightbox">
+        <!-- Dark overlay -->
+        <div id="lb-overlay" class="absolute inset-0 bg-black bg-opacity-90"></div>
+
+        <!-- Modal panel -->
+        <div class="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
+
+            <!-- Close button -->
+            <button id="lb-close"
+                class="absolute top-4 right-4 text-white bg-black bg-opacity-50 hover:bg-red-600 rounded-full w-10 h-10 flex items-center justify-center transition-colors duration-200 focus:outline-none"
+                aria-label="Close lightbox">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+
+            <!-- Prev button -->
+            <button id="lb-prev"
+                class="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 hover:bg-red-600 rounded-full w-10 h-10 flex items-center justify-center transition-colors duration-200 focus:outline-none"
+                aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- Next button -->
+            <button id="lb-next"
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black bg-opacity-50 hover:bg-red-600 rounded-full w-10 h-10 flex items-center justify-center transition-colors duration-200 focus:outline-none"
+                aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Image + caption -->
+            <div class="max-w-5xl w-full">
+                <img id="lb-img" src="" alt=""
+                    class="block mx-auto max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl transition-opacity duration-300">
+                <div class="mt-4 text-center">
+                    <p id="lb-title" class="text-white text-xl font-semibold"></p>
+                    <p id="lb-desc"  class="text-gray-300 text-sm mt-1"></p>
+                    <p id="lb-counter" class="text-gray-500 text-xs mt-2"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Statistics Section -->
+    <section class="py-16 bg-red-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl animate-fade-in-up">
+                    Our Portfolio Numbers
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-red-100 mx-auto">
+                    Years of excellence reflected in our work
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Stat 1 -->
+                <div class="text-center portfolio-stats" data-delay="0">
+                    <div class="text-4xl font-bold text-white counter" data-target="500">500</div>
+                    <p class="text-white text-lg font-medium">Projects Completed</p>
+                    <div class="w-16 h-1 bg-white mx-auto mt-2 rounded-full"></div>
+                </div>
+                
+                <!-- Stat 2 -->
+                <div class="text-center portfolio-stats" data-delay="100">
+                    <div class="text-4xl font-bold text-white counter" data-target="200">200</div>
+                    <p class="text-white text-lg font-medium">Happy Clients</p>
+                    <div class="w-16 h-1 bg-white mx-auto mt-2 rounded-full"></div>
+                </div>
+                
+                <!-- Stat 3 -->
+                <div class="text-center portfolio-stats" data-delay="200">
+                    <div class="text-4xl font-bold text-white counter" data-target="15">15</div>
+                    <p class="text-white text-lg font-medium">Years Experience</p>
+                    <div class="w-16 h-1 bg-white mx-auto mt-2 rounded-full"></div>
+                </div>
+                
+                <!-- Stat 4 -->
+                <div class="text-center portfolio-stats" data-delay="300">
+                    <div class="text-4xl font-bold text-white counter" data-target="98">98</div>
+                    <p class="text-white text-lg font-medium">% Satisfaction</p>
+                    <div class="w-16 h-1 bg-white mx-auto mt-2 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">About One Day Multimedia</h3>
+                    <p class="mt-4 text-base text-gray-300">
+                        Professional printing services with a commitment to quality, speed, and customer satisfaction. Serving businesses and individuals since 2010.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Quick Links</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="index.html" class="text-base text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Services</a></li>
+                        <li><a href="portfolio.html" class="text-base text-gray-300 hover:text-white">Portfolio</a></li>
+                        <li><a href="about.html" class="text-base text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Services</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Digital Printing</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Large Format</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">T-Shirt Printing</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Business Cards</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Promotional Items</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="https://facebook.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2025 One Day Multimedia. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Portfolio filtering functionality
+        function initPortfolioFilter() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter portfolio items using CSS class (avoids grid gap issues)
+                    portfolioItems.forEach(item => {
+                        const category = item.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            item.classList.remove('filtered-out');
+                            item.style.animation = 'zoomIn 0.4s ease-out forwards';
+                        } else {
+                            item.classList.add('filtered-out');
+                        }
+                    });
+                });
+            });
+        }
+
+        // Scroll animations for portfolio items
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.portfolio-item, .portfolio-stats, .portfolio-grid');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            elements.forEach(element => observer.observe(element));
+        }
+
+        // Counter animation for statistics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.getAttribute('data-target'));
+                        const duration = 2000; // 2 seconds
+                        const step = target / (duration / 16); // 60fps
+                        let current = 0;
+                        
+                        // Start from 0 for the animation effect
+                        entry.target.textContent = '0';
+                        
+                        const timer = setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            entry.target.textContent = Math.floor(current);
+                        }, 16);
+                        
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => counterObserver.observe(counter));
+        }
+
+        // ── Lightbox ────────────────────────────────────────────────────────────
+        function initLightbox() {
+            const items = Array.from(document.querySelectorAll('.portfolio-item:not(.filtered-out)'));
+
+            // Build index on demand (respects filter state)
+            function visibleItems() {
+                return Array.from(document.querySelectorAll('.portfolio-item:not(.filtered-out)'));
+            }
+
+            let currentIndex = 0;
+
+            const backdrop = document.getElementById('lb-backdrop');
+            const img      = document.getElementById('lb-img');
+            const title    = document.getElementById('lb-title');
+            const desc     = document.getElementById('lb-desc');
+            const counter  = document.getElementById('lb-counter');
+            const overlay  = document.getElementById('lb-overlay');
+            const btnClose = document.getElementById('lb-close');
+            const btnPrev  = document.getElementById('lb-prev');
+            const btnNext  = document.getElementById('lb-next');
+
+            function openAt(index) {
+                const list = visibleItems();
+                if (!list.length) return;
+                currentIndex = ((index % list.length) + list.length) % list.length;
+
+                const item  = list[currentIndex];
+                const src   = item.querySelector('.portfolio-image img').src;
+                const alt   = item.querySelector('.portfolio-image img').alt;
+                const h3    = item.querySelector('h3').textContent;
+                const p     = item.querySelector('p').textContent;
+
+                img.style.opacity = '0';
+                img.src = src;
+                img.alt = alt;
+                title.textContent   = h3;
+                desc.textContent    = p;
+                counter.textContent = `${currentIndex + 1} / ${list.length}`;
+
+                backdrop.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+
+                img.onload = () => { img.style.opacity = '1'; };
+                // If already cached the load event won't fire — force opacity
+                if (img.complete) img.style.opacity = '1';
+            }
+
+            function close() {
+                backdrop.classList.add('hidden');
+                document.body.style.overflow = '';
+                img.src = '';
+            }
+
+            // Attach click to every portfolio item
+            document.querySelectorAll('.portfolio-item').forEach((item, i) => {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', () => {
+                    const list = visibleItems();
+                    const idx  = list.indexOf(item);
+                    if (idx !== -1) openAt(idx);
+                });
+            });
+
+            btnClose.addEventListener('click', close);
+            overlay.addEventListener('click',  close);
+            btnPrev.addEventListener('click',  (e) => { e.stopPropagation(); openAt(currentIndex - 1); });
+            btnNext.addEventListener('click',  (e) => { e.stopPropagation(); openAt(currentIndex + 1); });
+
+            document.addEventListener('keydown', (e) => {
+                if (backdrop.classList.contains('hidden')) return;
+                if (e.key === 'Escape')     close();
+                if (e.key === 'ArrowRight') openAt(currentIndex + 1);
+                if (e.key === 'ArrowLeft')  openAt(currentIndex - 1);
+            });
+
+            // Touch swipe support
+            let touchStartX = 0;
+            backdrop.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+            backdrop.addEventListener('touchend',   (e) => {
+                const diff = touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) diff > 0 ? openAt(currentIndex + 1) : openAt(currentIndex - 1);
+            });
+        }
+
+        // Portfolio item interactions (hover only — click handled by lightbox)
+        function initPortfolioInteractions() {
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-6px) scale(1.01)';
+                    this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+        }
+
+        // Show project details — handled by lightbox now
+        function showProjectDetails() {}
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+
+        // Button animations
+        function initButtonAnimations() {
+            const buttons = document.querySelectorAll('.btn-animate');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+                
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        // Image hover effects
+        function initImageHoverEffects() {
+            const images = document.querySelectorAll('.image-hover');
+            
+            images.forEach(image => {
+                image.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                image.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Navigation link animations
+        function initNavigationAnimations() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#dc2626';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('border-red-500')) {
+                        this.style.color = '';
+                    }
+                });
+            });
+        }
+
+        // Add entrance animation to the page
+        function initPageEntrance() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.8s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        }
+
+        // Add scroll-triggered animations for sections
+        function initSectionAnimations() {
+            const sections = document.querySelectorAll('section');
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        const speed = 0.1 + (index * 0.05);
+                        entry.target.style.transition = `transform 0.6s ease-out`;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach((section, index) => {
+                section.style.transform = `translateY(${30 + (index * 10)}px)`;
+                sectionObserver.observe(section);
+            });
+        }
+
+        // Add keyboard navigation support
+        function initKeyboardNavigation() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-navigation');
+            });
+        }
+
+        // Add loading states for images
+        function handleImageLoading() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                
+                img.addEventListener('error', function() {
+                    this.style.opacity = '0.5';
+                    this.style.filter = 'grayscale(100%)';
+                });
+            });
+        }
+
+        // Portfolio grid animation
+        function animatePortfolioGrid() {
+            const portfolioGrid = document.querySelector('.portfolio-grid');
+            
+            if (portfolioGrid) {
+                const gridObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('animate');
+                            }, 300);
+                            gridObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+                
+                gridObserver.observe(portfolioGrid);
+            }
+        }
+
+        // Filter button hover effects
+        function initFilterButtonEffects() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.borderColor = '#dc2626';
+                        this.style.color = '#dc2626';
+                    }
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.borderColor = '';
+                        this.style.color = '';
+                    }
+                });
+            });
+        }
+
+        // Initialize all animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Portfolio page loaded - Initializing animations');
+            
+            initPageEntrance();
+            animateOnScroll();
+            animateCounters();
+            animatePortfolioGrid();
+            
+            // Initialize interactive features after a short delay
+            setTimeout(() => {
+                initPortfolioFilter();
+                initPortfolioInteractions();
+                initLightbox();
+                initButtonAnimations();
+                initImageHoverEffects();
+                initNavigationAnimations();
+                initKeyboardNavigation();
+                initFilterButtonEffects();
+                handleImageLoading();
+            }, 500);
+        });
+
+        // Scroll-triggered section reveal is handled by IntersectionObserver above
+
+        // Add click effects to interactive elements
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.portfolio-item, .portfolio-stats')) {
+                const element = e.target.closest('.portfolio-item, .portfolio-stats');
+                element.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    element.style.transform = '';
+                }, 150);
+            }
+        });
+
+        // Add hover effects to portfolio stats
+        document.querySelectorAll('.portfolio-stats').forEach(stat => {
+            stat.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.1)';
+            });
+            
+            stat.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Portfolio item image zoom effect
+        document.querySelectorAll('.portfolio-image').forEach(image => {
+            image.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            image.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+    <!-- AI Chatbot -->
+    <script src="chatbot.js"></script>
+    <!-- Page Transition Loader -->
+    <script src="page-loader.js"></script>
+</body>
+</html> 

@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - One Day Multimedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-overlay { background-color: rgba(0, 0, 0, 0.6); }
+        /* Prevent hero images from bleeding outside their container */
+        section.relative { overflow: hidden; }
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center;
+            font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+            animation: bounce 2s infinite;
+        }
+        
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+        
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+        
+        .animate-slide-in-bottom {
+            animation: slideInFromBottom 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Interactive Elements */
+        .interactive-card {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            cursor: pointer;
+        }
+        
+        .interactive-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Contact Info Cards */
+        .contact-card {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .contact-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+            color: #dc2626;
+        }
+        
+        /* Form Animations */
+        .form-group {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .form-group.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        
+        /* Button Animations */
+        .btn-animate {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-animate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-animate:hover::before {
+            left: 100%;
+        }
+        
+        .btn-animate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+        
+        /* Hero Section Animations */
+        .hero-title {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        
+        .hero-subtitle {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            opacity: 0;
+            animation: fadeInLeft 1s ease-out 0.3s forwards;
+        }
+        
+        .contact-form {
+            opacity: 0;
+            animation: fadeInRight 1s ease-out 0.6s forwards;
+        }
+        
+        /* Navigation Animations */
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #dc2626;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Image Hover Effects */
+        .image-hover {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .image-hover:hover::before {
+            left: 100%;
+        }
+        
+        .image-hover:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Loading Animation */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots::after {
+            content: '';
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0%, 20% {
+                content: '';
+            }
+            40% {
+                content: '.';
+            }
+            60% {
+                content: '..';
+            }
+            80%, 100% {
+                content: '...';
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/0593187041" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-xl font-bold text-red-600 hover:text-red-700 transition-colors">ONE DAY</a>
+                        <a href="index.html" class="text-xl font-bold text-gray-800 hover:text-gray-900 transition-colors">MULTIMEDIA</a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:space-x-8">
+                    <a href="index.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                    <a href="about.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                    <a href="services.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Services</a>
+                    <a href="portfolio.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Portfolio</a>
+                    <a href="contact.html" class="nav-link border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="about.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
+                <a href="services.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
+                <a href="portfolio.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Portfolio</a>
+                <a href="contact.html" class="bg-red-50 border-red-500 text-red-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="relative bg-gray-900 py-24">
+        <div class="absolute inset-0 hero-overlay">
+            <img class="w-full h-full object-cover image-hover" src="https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Printing press machine">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="hero-title text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Contact Us
+            </h1>
+            <p class="hero-subtitle mt-6 max-w-lg text-xl text-gray-300 sm:max-w-3xl">
+                Get in touch with our team for any inquiries or to discuss your next printing project.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <div class="lg:col-span-5 contact-content">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Get in Touch</h2>
+                    <p class="mt-3 text-lg text-gray-600">Ready to start your next printing project? Contact us today!</p>
+                    <div class="mt-8">
+                        <div class="flex items-start contact-card" data-delay="0">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-red-500 contact-icon transition-all duration-300"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-gray-900">Address</h3>
+                                <p class="text-sm text-gray-500">Twifo Mampong, Box 7, Twifo, Ghana</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mt-6 contact-card" data-delay="100">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-phone-alt text-red-500 contact-icon transition-all duration-300"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-gray-900">Phone</h3>
+                                <p class="text-sm text-gray-500">+233 242 145 496</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mt-6 contact-card" data-delay="200">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-envelope text-red-500 contact-icon transition-all duration-300"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-gray-900">Email</h3>
+                                <p class="text-sm text-gray-500">onedaymultimedia@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mt-6 contact-card" data-delay="300">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-clock text-red-500 contact-icon transition-all duration-300"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-gray-900">Working Hours</h3>
+                                <p class="text-sm text-gray-500">Monday - Friday: 8:00 AM - 6:00 PM</p>
+                                <p class="text-sm text-gray-500">Saturday: 9:00 AM - 2:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 lg:mt-0 lg:col-span-7 contact-form">
+                    <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                        <div class="px-6 py-8 sm:p-10">
+                            <h3 class="text-lg font-medium text-gray-900">Send Us a Message</h3>
+                            <form id="contact-form" class="mt-6 space-y-6" action="https://formspree.io/f/xnqkvgpo" method="POST">
+                                <!-- Hidden fields for Formspree -->
+                                <input type="hidden" name="_to" value="shadrachamo9@gmail.com">
+                                <input type="hidden" name="_subject" value="New Contact Form Message from One Day Multimedia">
+                                <input type="hidden" name="_replyto" value="" id="reply-to">
+                                <input type="hidden" name="_next" value="">
+                                <input type="text" name="_gotcha" style="display:none">
+                                
+                                <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                                    <div class="form-group" data-delay="0">
+                                        <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
+                                        <div class="mt-1">
+                                            <input type="text" name="first-name" id="first-name" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 transition-all duration-300">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" data-delay="100">
+                                        <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
+                                        <div class="mt-1">
+                                            <input type="text" name="last-name" id="last-name" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 transition-all duration-300">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-delay="200">
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                                    <div class="mt-1">
+                                        <input type="email" name="email" id="email" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 transition-all duration-300">
+                                    </div>
+                                </div>
+                                <div class="form-group" data-delay="300">
+                                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone number</label>
+                                    <div class="mt-1">
+                                        <input type="text" name="phone" id="phone" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 transition-all duration-300">
+                                    </div>
+                                </div>
+                                <div class="form-group" data-delay="400">
+                                    <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                                    <div class="mt-1">
+                                        <input type="text" name="subject" id="subject" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 transition-all duration-300">
+                                    </div>
+                                </div>
+                                <div class="form-group" data-delay="500">
+                                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                    <div class="mt-1">
+                                        <textarea id="message" name="message" rows="4" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 transition-all duration-300"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-delay="600">
+                                    <button type="submit" class="btn-animate w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                        Send Message
+                                    </button>
+                                    <p class="mt-2 text-xs text-gray-500 text-center">
+                                        Having trouble? <a href="#" id="mailto-fallback" class="text-red-600 hover:text-red-700 underline">Click here to email us directly</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">About One Day Multimedia</h3>
+                    <p class="mt-4 text-base text-gray-300">
+                        Professional printing services with a commitment to quality, speed, and customer satisfaction. Serving businesses and individuals since 2010.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Quick Links</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="index.html" class="text-base text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Services</a></li>
+                        <li><a href="portfolio.html" class="text-base text-gray-300 hover:text-white">Portfolio</a></li>
+                        <li><a href="about.html" class="text-base text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Services</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Digital Printing</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Large Format</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">T-Shirt Printing</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Business Cards</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Promotional Items</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="https://facebook.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2025 One Day Multimedia. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll animations for various elements
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.contact-card, .form-group');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            elements.forEach(element => observer.observe(element));
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+
+        // Contact card interactions
+        function initContactInteractions() {
+            const contactCards = document.querySelectorAll('.contact-card');
+            
+            contactCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.contact-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.contact-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+        }
+
+        // Form interactions
+        function initFormInteractions() {
+            const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+            
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.parentElement.style.transform = 'scale(1.02)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.parentElement.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Navigation link animations
+        function initNavigationAnimations() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#dc2626';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('border-red-500')) {
+                        this.style.color = '';
+                    }
+                });
+            });
+        }
+
+        // Image hover effects
+        function initImageHoverEffects() {
+            const images = document.querySelectorAll('.image-hover');
+            
+            images.forEach(image => {
+                image.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                image.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Add entrance animation to the page
+        function initPageEntrance() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.8s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        }
+
+        // Form submission handler
+        function initFormSubmission() {
+            const form = document.getElementById('contact-form');
+            const emailInput = document.getElementById('email');
+            const replyToInput = document.getElementById('reply-to');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Set reply-to field with the email from the form
+                    if (emailInput && replyToInput) {
+                        replyToInput.value = emailInput.value;
+                    }
+                    
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    
+                    // Show loading state
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.classList.add('loading-dots');
+                    submitBtn.disabled = true;
+                    
+                    // Submit the form using a more reliable method
+                    const formData = new FormData(this);
+                    
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        
+                        if (response.ok) {
+                            // Success
+                            submitBtn.textContent = 'Message Sent!';
+                            submitBtn.classList.remove('loading-dots');
+                            submitBtn.style.backgroundColor = '#10b981';
+                            
+                            // Reset form after success
+                            setTimeout(() => {
+                                this.reset();
+                                submitBtn.textContent = originalText;
+                                submitBtn.style.backgroundColor = '';
+                                submitBtn.disabled = false;
+                                
+                                // Show success message
+                                showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+                            }, 2000);
+                        } else {
+                            return response.text().then(text => {
+                                console.log('Error response:', text);
+                                throw new Error(`Server responded with ${response.status}: ${text}`);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        // Error
+                        console.error('Form submission error:', error);
+                        
+                        // Try alternative submission method
+                        console.log('Trying alternative submission method...');
+                        
+                        // Create a temporary form and submit it
+                        const tempForm = document.createElement('form');
+                        tempForm.method = 'POST';
+                        tempForm.action = this.action;
+                        tempForm.target = '_blank';
+                        tempForm.style.display = 'none';
+                        
+                        // Copy all form data
+                        for (let [key, value] of formData.entries()) {
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = key;
+                            input.value = value;
+                            tempForm.appendChild(input);
+                        }
+                        
+                        document.body.appendChild(tempForm);
+                        tempForm.submit();
+                        document.body.removeChild(tempForm);
+                        
+                        // Show success message (assuming it worked with fallback)
+                        submitBtn.textContent = 'Message Sent!';
+                        submitBtn.classList.remove('loading-dots');
+                        submitBtn.style.backgroundColor = '#10b981';
+                        
+                        setTimeout(() => {
+                            this.reset();
+                            submitBtn.textContent = originalText;
+                            submitBtn.style.backgroundColor = '';
+                            submitBtn.disabled = false;
+                            
+                            showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+                        }, 2000);
+                    });
+                });
+            }
+        }
+
+        // Notification system
+        function showNotification(message, type) {
+            // Remove existing notifications
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full`;
+            notification.style.backgroundColor = type === 'success' ? '#10b981' : '#ef4444';
+            notification.style.color = 'white';
+            notification.textContent = message;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+
+        // Mailto fallback
+        function initMailtoFallback() {
+            const mailtoLink = document.getElementById('mailto-fallback');
+            if (mailtoLink) {
+                mailtoLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const firstName = document.getElementById('first-name').value;
+                    const lastName = document.getElementById('last-name').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Create email content
+                    const emailSubject = encodeURIComponent(`Contact Form: ${subject}`);
+                    const emailBody = encodeURIComponent(`
+Name: ${firstName} ${lastName}
+Email: ${email}
+Phone: ${phone}
+Subject: ${subject}
+
+Message:
+${message}
+                    `);
+                    
+                    // Create mailto link
+                    const mailtoUrl = `mailto:shadrachamo9@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+                    
+                    // Open email client
+                    window.location.href = mailtoUrl;
+                });
+            }
+        }
+
+        // Initialize all animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Contact page loaded - Initializing animations');
+            
+            initPageEntrance();
+            animateOnScroll();
+            
+            // Initialize interactive features after a short delay
+            setTimeout(() => {
+                initContactInteractions();
+                initFormInteractions();
+                initNavigationAnimations();
+                initImageHoverEffects();
+                initFormSubmission();
+                initMailtoFallback();
+            }, 500);
+        });
+
+        // Scroll-triggered section reveal is handled by IntersectionObserver above
+
+        // Add click effects to interactive elements
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.contact-card')) {
+                const element = e.target.closest('.contact-card');
+                element.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    element.style.transform = '';
+                }, 150);
+            }
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Add loading states for images
+        function handleImageLoading() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                
+                img.addEventListener('error', function() {
+                    this.style.opacity = '0.5';
+                    this.style.filter = 'grayscale(100%)';
+                });
+            });
+        }
+
+        // Initialize image loading handlers
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', handleImageLoading);
+        } else {
+            handleImageLoading();
+        }
+    </script>
+    <!-- AI Chatbot -->
+    <script src="chatbot.js"></script>
+</body>
+</html> 

@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - One Day Multimedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .paper-texture {
+            background-image: url('https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png');
+            background-color: #ffffff;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        /* Prevent hero images from bleeding outside their container */
+        section.relative { overflow: hidden; }
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounce 2s infinite;
+        }
+        
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+        
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+        
+        .animate-slide-in-bottom {
+            animation: slideInFromBottom 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Interactive Elements */
+        .interactive-card {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            cursor: pointer;
+        }
+        
+        .interactive-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .interactive-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+            color: #dc2626;
+        }
+        
+        /* Value Cards */
+        .value-card {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .value-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+        }
+        
+        /* Team Member Cards */
+        .team-card {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .team-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-card:hover .team-image {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .team-image {
+            transition: all 0.4s ease;
+            border: 4px solid transparent;
+        }
+        
+        .team-card:hover .team-image {
+            border-color: #dc2626;
+        }
+        
+        /* Hero Section Animations */
+        .hero-title {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        
+        .hero-subtitle {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+        
+        /* About Section */
+        .about-content {
+            opacity: 0;
+            animation: fadeInLeft 1s ease-out 0.3s forwards;
+        }
+        
+        .about-image {
+            opacity: 0;
+            animation: fadeInRight 1s ease-out 0.6s forwards;
+        }
+        
+        /* Feature List */
+        .feature-item {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .feature-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .feature-item:hover {
+            transform: translateX(10px);
+            color: #dc2626;
+        }
+        
+        .feature-item:hover .feature-icon {
+            transform: scale(1.2);
+            color: #dc2626;
+        }
+        
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        
+        /* Navigation Animations */
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #dc2626;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Progress Bars */
+        .progress-bar {
+            width: 0;
+            transition: width 2s ease-in-out;
+        }
+        
+        .progress-bar.animate {
+            width: 100%;
+        }
+        
+        /* Counter Animation */
+        .counter {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .counter.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Image Hover Effects */
+        .image-hover {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .image-hover:hover::before {
+            left: 100%;
+        }
+        
+        .image-hover:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Stats Section */
+        .stats-card {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .stats-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            display: block;
+            line-height: 1;
+            min-height: 3rem;
+            opacity: 1;
+            visibility: visible;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stats-card:hover .stats-number {
+            transform: scale(1.1);
+            color: #fbbf24;
+        }
+        
+        /* Ensure counters are always visible */
+        .counter {
+            opacity: 1;
+            visibility: visible;
+            display: block;
+        }
+        
+        /* Loading Animation */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots::after {
+            content: '';
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0%, 20% {
+                content: '';
+            }
+            40% {
+                content: '.';
+            }
+            60% {
+                content: '..';
+            }
+            80%, 100% {
+                content: '...';
+            }
+        }
+        
+        /* Work Items */
+        .work-item {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .work-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .work-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .work-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .work-image {
+            transition: all 0.4s ease;
+        }
+        
+        .work-item:hover .work-image {
+            transform: scale(1.1);
+        }
+        
+        .work-image-container:hover .fa-search-plus {
+            opacity: 1 !important;
+        }
+        
+        /* Lightbox Modal */
+        .lightbox-enter {
+            animation: lightboxEnter 0.3s ease-out forwards;
+        }
+        
+        .lightbox-exit {
+            animation: lightboxExit 0.3s ease-in forwards;
+        }
+        
+        @keyframes lightboxEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes lightboxExit {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+        
+        /* Lightbox Navigation */
+        #prev-image, #next-image {
+            transition: all 0.3s ease;
+        }
+        
+        #prev-image:hover, #next-image:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Work Item Hover Effects */
+        .work-item .work-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.2), transparent);
+            transition: left 0.5s;
+            z-index: 1;
+        }
+        
+        .work-item:hover .work-image-container::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/0593187041" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-xl font-bold text-red-600 hover:text-red-700 transition-colors">ONE DAY</a>
+                        <a href="index.html" class="text-xl font-bold text-gray-800 hover:text-gray-900 transition-colors">MULTIMEDIA</a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:space-x-8">
+                    <a href="index.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                    <a href="about.html" class="nav-link border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                    <a href="services.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Services</a>
+                    <a href="portfolio.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Portfolio</a>
+                    <a href="contact.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="about.html" class="bg-red-50 border-red-500 text-red-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
+                <a href="services.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
+                <a href="portfolio.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Portfolio</a>
+                <a href="contact.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="relative bg-gray-900 py-24">
+        <div class="absolute inset-0 hero-overlay">
+            <img class="w-full h-full object-cover image-hover" src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Our printing facility">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="hero-title text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                About One Day Multimedia
+            </h1>
+            <p class="hero-subtitle mt-6 max-w-lg text-xl text-gray-300 sm:max-w-3xl">
+                Professional printing services with fast turnaround and exceptional quality since 2010.
+            </p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left about-content">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                        Our Story
+                    </h2>
+                    <p class="mt-3 text-lg text-gray-500 sm:mt-4">
+                        Founded in 2010, One Day Multimedia has grown from a small print shop to a full-service printing company serving businesses of all sizes.
+                    </p>
+                    <p class="mt-3 text-base text-gray-500">
+                        Our mission is to provide high-quality printing services with fast turnaround times and exceptional customer service. We invest in the latest printing technology and continuously train our team to ensure we deliver the best results for our clients.
+                    </p>
+                    <div class="mt-8 sm:max-w-lg sm:mx-auto lg:mx-0">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center feature-item" data-delay="0">
+                                <i class="fas fa-check-circle text-red-500 mr-2 feature-icon"></i>
+                                <span class="text-gray-700">Fast Turnaround</span>
+                            </div>
+                            <div class="flex items-center feature-item" data-delay="100">
+                                <i class="fas fa-check-circle text-red-500 mr-2 feature-icon"></i>
+                                <span class="text-gray-700">Quality Materials</span>
+                            </div>
+                            <div class="flex items-center feature-item" data-delay="200">
+                                <i class="fas fa-check-circle text-red-500 mr-2 feature-icon"></i>
+                                <span class="text-gray-700">Competitive Pricing</span>
+                            </div>
+                            <div class="flex items-center feature-item" data-delay="300">
+                                <i class="fas fa-check-circle text-red-500 mr-2 feature-icon"></i>
+                                <span class="text-gray-700">Expert Advice</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center about-image">
+                    <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+                        <div class="relative block w-full bg-white rounded-lg overflow-hidden image-hover">
+                            <img class="w-full" src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Our printing facility">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <h3 class="text-lg font-medium text-white">Our State-of-the-Art Printing Facility</h3>
+                                <p class="mt-1 text-sm text-gray-300">Equipped with the latest digital and offset printing technology</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <!-- Statistics Section -->
+    <section class="py-16 bg-red-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl animate-fade-in-up">
+                    Our Numbers Speak
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-red-100 mx-auto">
+                    Years of excellence in numbers
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Stat 1 -->
+                <div class="text-center stats-card" data-delay="0">
+                    <div class="stats-number counter" data-target="15">15</div>
+                    <p class="text-white text-lg font-medium">Years Experience</p>
+                    <div class="w-16 h-1 bg-white mx-auto mt-2 rounded-full"></div>
+                </div>
+                
+                <!-- Stat 2 -->
+                <div class="text-center stats-card" data-delay="100">
+                    <div class="stats-number counter" data-target="1000">1000</div>
+                    <p class="text-white text-lg font-medium">Happy Clients</p>
+                    <div class="w-16 h-1 bg-white mx-auto mt-2 rounded-full"></div>
+                </div>
+                
+                <!-- Stat 3 -->
+                <div class="text-center stats-card" data-delay="200">
+                    <div class="stats-number counter" data-target="5000">5000</div>
+                    <p class="text-white text-lg font-medium">Projects Completed</p>
+                    <div class="w-16 h-1 bg-white mx-auto mt-2 rounded-full"></div>
+                </div>
+                
+                <!-- Stat 4 -->
+                <div class="text-center stats-card" data-delay="300">
+                    <div class="stats-number counter" data-target="24">24</div>
+                    <p class="text-white text-lg font-medium">Hours Support</p>
+                    <div class="w-16 h-1 bg-white mx-auto mt-2 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in-up">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Our Values
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    The principles that guide everything we do
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Value 1 -->
+                    <div class="pt-6 value-card" data-delay="0">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg value-icon">
+                                        <i class="fas fa-star text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Quality First</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    We never compromise on quality. Every project receives the same attention to detail, regardless of size.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Value 2 -->
+                    <div class="pt-6 value-card" data-delay="100">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg value-icon">
+                                        <i class="fas fa-clock text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Fast Delivery</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    We understand that time is money. Our efficient processes ensure quick turnaround without sacrificing quality.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Value 3 -->
+                    <div class="pt-6 value-card" data-delay="200">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg value-icon">
+                                        <i class="fas fa-users text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Customer Focus</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Your success is our success. We work closely with you to understand your needs and deliver solutions that exceed expectations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in-up">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    Meet Our Team
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    The dedicated professionals behind our success
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Team Member 1 -->
+                    <div class="text-center team-card" data-delay="0">
+                        <div class="relative group">
+                            <img class="mx-auto h-32 w-32 rounded-full team-image shadow-lg" src="images/FF.jpg" alt="Seth A. Anokye">
+                            <div class="absolute inset-0 rounded-full bg-red-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="mt-6 text-lg font-medium text-gray-900">Seth A. Anokye</h3>
+                        <p class="text-gray-500 font-semibold">Founder & CEO</p>
+                        <p class="mt-2 text-sm text-gray-600">Over 15 years of experience in the printing industry</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="javascript:void(0)" title="LinkedIn" class="text-gray-400 hover:text-red-500 transition-colors">
+                                <i class="fab fa-linkedin text-lg"></i>
+                            </a>
+                            <a href="javascript:void(0)" title="Twitter" class="text-gray-400 hover:text-red-500 transition-colors">
+                                <i class="fab fa-twitter text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="text-center team-card" data-delay="100">
+                        <div class="relative group">
+                            <img class="mx-auto h-32 w-32 rounded-full team-image shadow-lg" src="images/233552818676_status_a2832bbe6bcb4a3280d99fa5e3336c08.jpg" alt="Isha Anokye">
+                            <div class="absolute inset-0 rounded-full bg-red-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="mt-6 text-lg font-medium text-gray-900">Isha Anokye</h3>
+                        <p class="text-gray-500 font-semibold">Production Manager</p>
+                        <p class="mt-2 text-sm text-gray-600">Expert in quality control and production optimization</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="javascript:void(0)" title="LinkedIn" class="text-gray-400 hover:text-red-500 transition-colors">
+                                <i class="fab fa-linkedin text-lg"></i>
+                            </a>
+                            <a href="javascript:void(0)" title="Twitter" class="text-gray-400 hover:text-red-500 transition-colors">
+                                <i class="fab fa-twitter text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="text-center team-card" data-delay="200">
+                        <div class="relative group">
+                            <img class="mx-auto h-32 w-32 rounded-full team-image shadow-lg" src="images/IMG-20240107-WA0008.jpg" alt="Amo Shadrach">
+                            <div class="absolute inset-0 rounded-full bg-red-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="mt-6 text-lg font-medium text-gray-900">Amo Shadrach</h3>
+                        <p class="text-gray-500 font-semibold">Customer Service Lead</p>
+                        <p class="mt-2 text-sm text-gray-600">Dedicated to ensuring customer satisfaction</p>
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <a href="javascript:void(0)" title="LinkedIn" class="text-gray-400 hover:text-red-500 transition-colors">
+                                <i class="fab fa-linkedin text-lg"></i>
+                            </a>
+                            <a href="javascript:void(0)" title="Twitter" class="text-gray-400 hover:text-red-500 transition-colors">
+                                <i class="fab fa-twitter text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl animate-fade-in-up">
+                    Our Journey
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    From humble beginnings to industry leadership
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-red-500"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- 2010 -->
+                    <div class="relative timeline-item" data-delay="0">
+                        <div class="flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-red-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-odd:translate-x-1/2">
+                                <i class="fas fa-rocket text-white text-sm"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded shadow border-l-4 border-red-500">
+                                <div class="flex items-center justify-between space-x-2 mb-1">
+                                    <time class="font-bold text-red-500">2010</time>
+                                    <span class="text-sm text-gray-500">Founded</span>
+                                </div>
+                                <h3 class="font-semibold text-gray-900">Company Founded</h3>
+                                <p class="text-sm text-gray-600">Started as a small print shop with a vision for quality and customer service.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2015 -->
+                    <div class="relative timeline-item" data-delay="100">
+                        <div class="flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-red-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-odd:translate-x-1/2">
+                                <i class="fas fa-expand text-white text-sm"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded shadow border-l-4 border-red-500">
+                                <div class="flex items-center justify-between space-x-2 mb-1">
+                                    <time class="font-bold text-red-500">2015</time>
+                                    <span class="text-sm text-gray-500">Expansion</span>
+                                </div>
+                                <h3 class="font-semibold text-gray-900">First Expansion</h3>
+                                <p class="text-sm text-gray-600">Expanded services to include large format printing and digital solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2018 -->
+                    <div class="relative timeline-item" data-delay="200">
+                        <div class="flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-red-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-odd:translate-x-1/2">
+                                <i class="fas fa-award text-white text-sm"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded shadow border-l-4 border-red-500">
+                                <div class="flex items-center justify-between space-x-2 mb-1">
+                                    <time class="font-bold text-red-500">2018</time>
+                                    <span class="text-sm text-gray-500">Recognition</span>
+                                </div>
+                                <h3 class="font-semibold text-gray-900">Industry Recognition</h3>
+                                <p class="text-sm text-gray-600">Received multiple awards for quality and customer service excellence.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2020 -->
+                    <div class="relative timeline-item" data-delay="300">
+                        <div class="flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-red-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-odd:translate-x-1/2">
+                                <i class="fas fa-digital-tachograph text-white text-sm"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded shadow border-l-4 border-red-500">
+                                <div class="flex items-center justify-between space-x-2 mb-1">
+                                    <time class="font-bold text-red-500">2020</time>
+                                    <span class="text-sm text-gray-500">Digital</span>
+                                </div>
+                                <h3 class="font-semibold text-gray-900">Digital Transformation</h3>
+                                <p class="text-sm text-gray-600">Launched online ordering system and digital workflow solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2025 -->
+                    <div class="relative timeline-item" data-delay="400">
+                        <div class="flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-red-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-odd:translate-x-1/2">
+                                <i class="fas fa-star text-white text-sm"></i>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded shadow border-l-4 border-red-500">
+                                <div class="flex items-center justify-between space-x-2 mb-1">
+                                    <time class="font-bold text-red-500">2025</time>
+                                    <span class="text-sm text-gray-500">Today</span>
+                                </div>
+                                <h3 class="font-semibold text-gray-900">Industry Leader</h3>
+                                <p class="text-sm text-gray-600">Established as a leading printing company with cutting-edge technology and exceptional service.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Work Section -->
+    <section class="pt-8 pb-0 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl animate-fade-in-up">
+                    Recent Work
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    Take a look at some of our recent projects and the quality we deliver
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Work Item 1 -->
+                <div class="work-item bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" data-delay="0">
+                    <div class="work-image-container relative overflow-hidden">
+                        <img class="w-full h-48 object-cover work-image" src="https://images.unsplash.com/photo-1541140134513-85a161dc4a00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Business Cards">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Business Cards</h3>
+                        <p class="mt-2 text-gray-600">Premium card stock with spot UV finish</p>
+                        <p class="mt-2 text-sm text-red-500 font-medium">Click to view larger</p>
+                    </div>
+                </div>
+
+                <!-- Work Item 2 -->
+                <div class="work-item bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" data-delay="100">
+                    <div class="work-image-container relative overflow-hidden">
+                        <img class="w-full h-48 object-cover work-image" src="https://images.unsplash.com/photo-1579273166152-d7256a9c9f0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Custom T-Shirts">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Custom T-Shirts</h3>
+                        <p class="mt-2 text-gray-600">Screen printed cotton t-shirts</p>
+                        <p class="mt-2 text-sm text-red-500 font-medium">Click to view larger</p>
+                    </div>
+                </div>
+
+                <!-- Work Item 3 -->
+                <div class="work-item bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" data-delay="200">
+                    <div class="work-image-container relative overflow-hidden">
+                        <img class="w-full h-48 object-cover work-image" src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Brochures">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Brochures</h3>
+                        <p class="mt-2 text-gray-600">Tri-fold brochures with full color printing</p>
+                        <p class="mt-2 text-sm text-red-500 font-medium">Click to view larger</p>
+                    </div>
+                </div>
+
+                <!-- Work Item 4 -->
+                <div class="work-item bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" data-delay="300">
+                    <div class="work-image-container relative overflow-hidden">
+                        <img class="w-full h-48 object-cover work-image" src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Vinyl Banners">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Vinyl Banners</h3>
+                        <p class="mt-2 text-gray-600">Large format outdoor banners</p>
+                        <p class="mt-2 text-sm text-red-500 font-medium">Click to view larger</p>
+                    </div>
+                </div>
+
+                <!-- Work Item 5 -->
+                <div class="work-item bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" data-delay="400">
+                    <div class="work-image-container relative overflow-hidden">
+                        <img class="w-full h-48 object-cover work-image" src="https://images.unsplash.com/photo-1600185369659-d3d687e9f2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1925&q=80" alt="Flyers">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Flyers</h3>
+                        <p class="mt-2 text-gray-600">Full color flyers on premium paper</p>
+                        <p class="mt-2 text-sm text-red-500 font-medium">Click to view larger</p>
+                    </div>
+                </div>
+
+                <!-- Work Item 6 -->
+                <div class="work-item bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer" data-delay="500">
+                    <div class="work-image-container relative overflow-hidden">
+                        <img class="w-full h-48 object-cover work-image" src="https://images.unsplash.com/photo-1600185369659-d3d687e9f2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" alt="Custom Packaging">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></i>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Custom Packaging</h3>
+                        <p class="mt-2 text-gray-600">Branded boxes and packaging</p>
+                        <p class="mt-2 text-sm text-red-500 font-medium">Click to view larger</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="portfolio.html" class="btn-animate inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700">
+                    View Full Portfolio
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+        <div class="relative max-w-4xl max-h-full">
+            <!-- Close Button -->
+            <button id="close-lightbox" class="absolute top-4 right-4 text-white text-3xl hover:text-red-500 transition-colors duration-300 z-10">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Navigation Arrows -->
+            <button id="prev-image" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl hover:text-red-500 transition-colors duration-300 z-10">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="next-image" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl hover:text-red-500 transition-colors duration-300 z-10">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Image Container -->
+            <div class="relative">
+                <img id="lightbox-image" class="max-w-full max-h-full object-contain rounded-lg" src="" alt="">
+                <div class="mt-4 text-center">
+                    <h3 id="lightbox-title" class="text-white text-xl font-semibold"></h3>
+                    <p id="lightbox-description" class="text-gray-300 mt-2"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">About One Day Multimedia</h3>
+                    <p class="mt-4 text-base text-gray-300">
+                        Professional printing services with a commitment to quality, speed, and customer satisfaction. Serving businesses and individuals since 2010.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Quick Links</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="index.html" class="text-base text-gray-300 hover:text-white">Home</a>
+                        </li>
+                        <li>
+                            <a href="services.html" class="text-base text-gray-300 hover:text-white">Services</a>
+                        </li>
+                        <li>
+                            <a href="portfolio.html" class="text-base text-gray-300 hover:text-white">Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="about.html" class="text-base text-gray-300 hover:text-white">About Us</a>
+                        </li>
+                        <li>
+                            <a href="contact.html" class="text-base text-gray-300 hover:text-white">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Services</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="services.html" class="text-base text-gray-300 hover:text-white">Digital Printing</a>
+                        </li>
+                        <li>
+                            <a href="services.html" class="text-base text-gray-300 hover:text-white">Large Format</a>
+                        </li>
+                        <li>
+                            <a href="services.html" class="text-base text-gray-300 hover:text-white">T-Shirt Printing</a>
+                        </li>
+                        <li>
+                            <a href="services.html" class="text-base text-gray-300 hover:text-white">Business Cards</a>
+                        </li>
+                        <li>
+                            <a href="services.html" class="text-base text-gray-300 hover:text-white">Promotional Items</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="https://facebook.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2025 One Day Multimedia. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll animations for various elements
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.value-card, .team-card, .stats-card, .timeline-item, .feature-item');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            elements.forEach(element => observer.observe(element));
+        }
+
+        // Counter animation for statistics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            console.log('Found counters:', counters.length); // Debug log
+            
+            if (counters.length === 0) {
+                console.log('No counter elements found');
+                return;
+            }
+            
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.getAttribute('data-target'));
+                        const duration = 2000; // 2 seconds
+                        const step = target / (duration / 16); // 60fps
+                        let current = 0;
+                        
+                        console.log('Animating counter:', target); // Debug log
+                        
+                        // Start from 0 for the animation effect
+                        entry.target.textContent = '0';
+                        
+                        const timer = setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            entry.target.textContent = Math.floor(current);
+                        }, 16);
+                        
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => {
+                console.log('Observing counter:', counter.textContent); // Debug log
+                counterObserver.observe(counter);
+            });
+        }
+
+        // Manual counter animation trigger
+        function manualCounterAnimation() {
+            const counters = document.querySelectorAll('.counter');
+            console.log('Manual counter animation triggered');
+            
+            counters.forEach((counter, index) => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const delay = index * 200; // Stagger the animations
+                
+                setTimeout(() => {
+                    // Reset to 0
+                    counter.textContent = '0';
+                    
+                    // Animate to target
+                    let current = 0;
+                    const step = target / 50; // 50 steps for smooth animation
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        counter.textContent = Math.floor(current);
+                    }, 40); // 25fps for smooth animation
+                }, delay);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('About page loaded - Initializing animations');
+            
+            initPageEntrance();
+            animateOnScroll();
+            animateCounters();
+            animateFeatureList();
+            animateTimeline();
+            animateProgressBars();
+            
+            // Initialize interactive features after a short delay
+            setTimeout(() => {
+                initTeamInteractions();
+                initValueInteractions();
+                initImageHoverEffects();
+                initNavigationAnimations();
+                initLightbox();
+                animateWorkItems();
+            }, 500);
+            
+            // Fallback: Ensure counters are visible after 1 second
+            setTimeout(() => {
+                const counters = document.querySelectorAll('.counter');
+                counters.forEach(counter => {
+                    if (counter.textContent === '0' || counter.textContent === '') {
+                        const target = counter.getAttribute('data-target');
+                        counter.textContent = target;
+                    }
+                });
+            }, 1000);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+
+        // Interactive feature list animations
+        function animateFeatureList() {
+            const featureItems = document.querySelectorAll('.feature-item');
+            
+            const featureObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, index * 100);
+                        featureObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            featureItems.forEach(item => featureObserver.observe(item));
+        }
+
+        // Team member card interactions
+        function initTeamInteractions() {
+            const teamCards = document.querySelectorAll('.team-card');
+            
+            teamCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Value card interactions
+        function initValueInteractions() {
+            const valueCards = document.querySelectorAll('.value-card');
+            
+            valueCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.value-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.value-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+        }
+
+        // Timeline animations
+        function animateTimeline() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+                        timelineObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            timelineItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'all 0.6s ease-out';
+                timelineObserver.observe(item);
+            });
+        }
+
+        // Image hover effects
+        function initImageHoverEffects() {
+            const images = document.querySelectorAll('.image-hover');
+            
+            images.forEach(image => {
+                image.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                image.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Navigation link animations
+        function initNavigationAnimations() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#dc2626';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('border-red-500')) {
+                        this.style.color = '';
+                    }
+                });
+            });
+        }
+
+        // Progress bar animations
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            const progressObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, 500);
+                        progressObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            progressBars.forEach(bar => progressObserver.observe(bar));
+        }
+
+        // Add entrance animation to the page
+        function initPageEntrance() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.8s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        }
+
+        // Add hover effects to portfolio stats
+        document.querySelectorAll('.portfolio-stats').forEach(stat => {
+            stat.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.1)';
+            });
+            
+            stat.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Portfolio item image zoom effect
+        document.querySelectorAll('.portfolio-image').forEach(image => {
+            image.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            image.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Lightbox Modal Functionality
+        function initLightbox() {
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDescription = document.getElementById('lightbox-description');
+            const closeButton = document.getElementById('close-lightbox');
+            const prevButton = document.getElementById('prev-image');
+            const nextButton = document.getElementById('next-image');
+            
+            let currentImageIndex = 0;
+            const workItems = document.querySelectorAll('.work-item');
+            const images = [];
+            const titles = [];
+            const descriptions = [];
+            
+            // Collect all work item data
+            workItems.forEach((item, index) => {
+                const img = item.querySelector('.work-image');
+                const title = item.querySelector('h3').textContent;
+                const desc = item.querySelector('p').textContent;
+                
+                images.push(img.src);
+                titles.push(title);
+                descriptions.push(desc);
+                
+                // Add click event to each work item
+                item.addEventListener('click', function() {
+                    openLightbox(index);
+                });
+            });
+            
+            function openLightbox(index) {
+                currentImageIndex = index;
+                lightboxImage.src = images[index];
+                lightboxImage.alt = titles[index];
+                lightboxTitle.textContent = titles[index];
+                lightboxDescription.textContent = descriptions[index];
+                
+                lightboxModal.classList.remove('hidden');
+                lightboxModal.classList.add('lightbox-enter');
+                
+                // Prevent body scroll
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeLightbox() {
+                lightboxModal.classList.add('lightbox-exit');
+                setTimeout(() => {
+                    lightboxModal.classList.remove('lightbox-enter', 'lightbox-exit');
+                    lightboxModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+            
+            function showNextImage() {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                lightboxImage.src = images[currentImageIndex];
+                lightboxImage.alt = titles[currentImageIndex];
+                lightboxTitle.textContent = titles[currentImageIndex];
+                lightboxDescription.textContent = descriptions[currentImageIndex];
+            }
+            
+            function showPrevImage() {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                lightboxImage.src = images[currentImageIndex];
+                lightboxImage.alt = titles[currentImageIndex];
+                lightboxTitle.textContent = titles[currentImageIndex];
+                lightboxDescription.textContent = descriptions[currentImageIndex];
+            }
+            
+            // Event listeners
+            closeButton.addEventListener('click', closeLightbox);
+            nextButton.addEventListener('click', showNextImage);
+            prevButton.addEventListener('click', showPrevImage);
+            
+            // Close on background click
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal) {
+                    closeLightbox();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (lightboxModal.classList.contains('hidden')) return;
+                
+                switch(e.key) {
+                    case 'Escape':
+                        closeLightbox();
+                        break;
+                    case 'ArrowRight':
+                        showNextImage();
+                        break;
+                    case 'ArrowLeft':
+                        showPrevImage();
+                        break;
+                }
+            });
+        }
+
+        // Work item animations
+        function animateWorkItems() {
+            const workItems = document.querySelectorAll('.work-item');
+            
+            const workObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, delay);
+                        workObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            workItems.forEach(item => workObserver.observe(item));
+        }
+
+        // Scroll-triggered section reveal is handled by IntersectionObserver above
+
+        // Add click effects to interactive elements
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.value-card, .team-card, .stats-card')) {
+                const element = e.target.closest('.value-card, .team-card, .stats-card');
+                element.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    element.style.transform = '';
+                }, 150);
+            }
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Add loading states for images
+        function handleImageLoading() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                
+                img.addEventListener('error', function() {
+                    this.style.opacity = '0.5';
+                    this.style.filter = 'grayscale(100%)';
+                });
+            });
+        }
+
+        // Initialize image loading handlers
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', handleImageLoading);
+        } else {
+            handleImageLoading();
+        }
+    </script>
+    <!-- AI Chatbot -->
+    <script src="chatbot.js"></script>
+</body>
+</html> 

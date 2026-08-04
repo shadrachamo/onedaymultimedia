@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - One Day Multimedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-overlay { 
+            background-color: rgba(0, 0, 0, 0.6); 
+        }
+        /* Prevent hero images from bleeding outside their container */
+        section.relative { overflow: hidden; }
+        .whatsapp-float {
+            position: fixed; 
+            width: 60px; 
+            height: 60px; 
+            bottom: 40px; 
+            right: 40px;
+            background-color: #25d366; 
+            color: #FFF; 
+            border-radius: 50px; 
+            text-align: center;
+            font-size: 30px; 
+            box-shadow: 2px 2px 3px #999; 
+            z-index: 100;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            animation: bounce 2s infinite;
+        }
+        
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+        }
+        
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+        
+        .animate-slide-in-bottom {
+            animation: slideInFromBottom 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        /* Service Cards */
+        .service-card {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        /* Service Icons */
+        .service-icon {
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+        }
+        
+        /* Hero Section Animations */
+        .hero-title {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        
+        .hero-subtitle {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+        
+        /* Navigation Animations */
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #dc2626;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Button Animations */
+        .btn-animate {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-animate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-animate:hover::before {
+            left: 100%;
+        }
+        
+        .btn-animate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Quote Section */
+        .quote-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #dc2626, #ef4444, #dc2626);
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
+            opacity: 0.1;
+        }
+        
+        /* Service Features */
+        .service-feature {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .service-feature.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-feature:hover {
+            transform: translateY(-5px);
+            color: #dc2626;
+        }
+        
+        /* Image Hover Effects */
+        .image-hover {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .image-hover:hover::before {
+            left: 100%;
+        }
+        
+        .image-hover:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Service Categories */
+        .service-category {
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .service-category.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Progress Indicators */
+        .progress-indicator {
+            width: 0;
+            transition: width 1.5s ease-in-out;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+            border-radius: 2px;
+        }
+        
+        .progress-indicator.animate {
+            width: var(--bar-width, 100%);
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(2) {
+            animation-delay: 1s;
+        }
+        
+        .floating-element:nth-child(3) {
+            animation-delay: 2s;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/0593187041" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-xl font-bold text-red-600 hover:text-red-700 transition-colors">ONE DAY</a>
+                        <a href="index.html" class="text-xl font-bold text-gray-800 hover:text-gray-900 transition-colors">MULTIMEDIA</a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:space-x-8">
+                    <a href="index.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                    <a href="about.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                    <a href="services.html" class="nav-link border-red-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Services</a>
+                    <a href="portfolio.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Portfolio</a>
+                    <a href="contact.html" class="nav-link border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="about.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
+                <a href="services.html" class="bg-red-50 border-red-500 text-red-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Services</a>
+                <a href="portfolio.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Portfolio</a>
+                <a href="contact.html" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="relative bg-gray-900 py-24">
+        <div class="absolute inset-0 hero-overlay">
+            <img class="w-full h-full object-cover image-hover" src="https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Printing press machine">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="hero-title text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Our Printing Services
+            </h1>
+            <p class="hero-subtitle mt-6 max-w-lg text-xl text-gray-300 sm:max-w-3xl">
+                Comprehensive printing solutions for all your needs with fast turnaround and exceptional quality.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in-up">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">What We Offer</h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    High-quality printing solutions tailored to your needs
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Digital Printing -->
+                    <div class="pt-6 service-card" data-delay="0">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg service-icon">
+                                        <i class="fas fa-print text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Digital Printing</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    High-quality digital printing for business cards, flyers, brochures, and more with quick turnaround times.
+                                </p>
+                                <div class="mt-6">
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <i class="fas fa-clock mr-2 text-red-500"></i>
+                                        <span>24-48 hours turnaround</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-500 mt-2">
+                                        <i class="fas fa-check mr-2 text-red-500"></i>
+                                        <span>High resolution output</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- T-Shirt Printing -->
+                    <div class="pt-6 service-card" data-delay="100">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg service-icon">
+                                        <i class="fas fa-tshirt text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">T-Shirt Printing</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Custom t-shirt printing with various techniques including screen printing, DTG, and heat transfer.
+                                </p>
+                                <div class="mt-6">
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <i class="fas fa-palette mr-2 text-red-500"></i>
+                                        <span>Multiple techniques available</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-500 mt-2">
+                                        <i class="fas fa-check mr-2 text-red-500"></i>
+                                        <span>Durable & washable</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Large Format Printing -->
+                    <div class="pt-6 service-card" data-delay="200">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg service-icon">
+                                        <i class="fas fa-sign text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Large Format Printing</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Banners, posters, signage, and other large format prints with vibrant colors and durable materials.
+                                </p>
+                                <div class="mt-6">
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <i class="fas fa-expand mr-2 text-red-500"></i>
+                                        <span>Up to 5ft wide prints</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-500 mt-2">
+                                        <i class="fas fa-check mr-2 text-red-500"></i>
+                                        <span>Weather resistant materials</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Cards -->
+                    <div class="pt-6 service-card" data-delay="300">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg service-icon">
+                                        <i class="fas fa-id-card text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Business Cards</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Premium business card printing with various finishes including matte, gloss, spot UV, and foil stamping.
+                                </p>
+                                <div class="mt-6">
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <i class="fas fa-star mr-2 text-red-500"></i>
+                                        <span>Premium finishes available</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-500 mt-2">
+                                        <i class="fas fa-check mr-2 text-red-500"></i>
+                                        <span>Professional quality</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brochures -->
+                    <div class="pt-6 service-card" data-delay="400">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg service-icon">
+                                        <i class="fas fa-book-open text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Brochures & Catalogs</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Professional brochure and catalog printing with various folding options and paper stocks.
+                                </p>
+                                <div class="mt-6">
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <i class="fas fa-fold mr-2 text-red-500"></i>
+                                        <span>Multiple fold options</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-500 mt-2">
+                                        <i class="fas fa-check mr-2 text-red-500"></i>
+                                        <span>Premium paper stocks</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promotional Items -->
+                    <div class="pt-6 service-card" data-delay="500">
+                        <div class="flow-root bg-white rounded-lg px-6 pb-8 h-full shadow-lg">
+                            <div class="-mt-6">
+                                <div>
+                                    <span class="inline-flex items-center justify-center p-3 bg-red-500 rounded-md shadow-lg service-icon">
+                                        <i class="fas fa-gift text-white text-2xl"></i>
+                                    </span>
+                                </div>
+                                <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Promotional Items</h3>
+                                <p class="mt-5 text-base text-gray-500">
+                                    Custom printed promotional products including pens, mugs, bags, and more for your marketing needs.
+                                </p>
+                                <div class="mt-6">
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <i class="fas fa-tags mr-2 text-red-500"></i>
+                                        <span>Wide variety of items</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-500 mt-2">
+                                        <i class="fas fa-check mr-2 text-red-500"></i>
+                                        <span>Custom branding</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl animate-fade-in-up">
+                    Why Choose Our Services?
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+                    We combine technology, expertise, and customer focus to deliver exceptional results
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Left Column - Features -->
+                <div class="space-y-8">
+                    <div class="service-feature" data-delay="0">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
+                                    <i class="fas fa-rocket text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Fast Turnaround</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Most projects completed within 24-48 hours. We understand that time is money in business.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-feature" data-delay="100">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
+                                    <i class="fas fa-award text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Premium Quality</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    We never compromise on quality. Every project receives the same attention to detail.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-feature" data-delay="200">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
+                                    <i class="fas fa-headset text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Expert Support</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Our team of printing experts is always available to guide you through your project.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Progress Bars -->
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Our Capabilities</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>Print Quality</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="progress-indicator h-2 bg-red-500 rounded-full" style="--bar-width:100%" data-delay="0"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>Customer Satisfaction</span>
+                                    <span>98%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="progress-indicator h-2 bg-red-500 rounded-full" style="--bar-width:98%" data-delay="200"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>On-Time Delivery</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="progress-indicator h-2 bg-red-500 rounded-full" style="--bar-width:95%" data-delay="400"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>Technology Investment</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="progress-indicator h-2 bg-red-500 rounded-full" style="--bar-width:90%" data-delay="600"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="relative">
+                        <div class="floating-element absolute top-0 left-0 w-16 h-16 bg-red-100 rounded-full opacity-60"></div>
+                        <div class="floating-element absolute top-8 right-0 w-12 h-12 bg-red-200 rounded-full opacity-60"></div>
+                        <div class="floating-element absolute bottom-0 left-8 w-20 h-20 bg-red-300 rounded-full opacity-40"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-12 bg-red-600 quote-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl animate-fade-in-up">Ready to Get Started?</h2>
+                <p class="mt-4 text-xl text-red-100">
+                    Request a quote today and our team will get back to you within 24 hours.
+                </p>
+                <div class="mt-8">
+                    <a href="contact.html" class="btn-animate inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-red-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Get a Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">About One Day Multimedia</h3>
+                    <p class="mt-4 text-base text-gray-300">
+                        Professional printing services with a commitment to quality, speed, and customer satisfaction. Serving businesses and individuals since 2010.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Quick Links</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="index.html" class="text-base text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Services</a></li>
+                        <li><a href="portfolio.html" class="text-base text-gray-300 hover:text-white">Portfolio</a></li>
+                        <li><a href="about.html" class="text-base text-gray-300 hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="text-base text-gray-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Services</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Digital Printing</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Large Format</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">T-Shirt Printing</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Business Cards</a></li>
+                        <li><a href="services.html" class="text-base text-gray-300 hover:text-white">Promotional Items</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 md:flex md:items-center md:justify-between">
+                <div class="flex space-x-6 md:order-2">
+                    <a href="https://facebook.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+                    &copy; 2025 One Day Multimedia. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Scroll animations for various elements
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .service-feature, .progress-indicator');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            elements.forEach(element => observer.observe(element));
+        }
+
+        // Progress bar animations
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-indicator');
+            
+            const progressObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, delay);
+                        progressObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            progressBars.forEach(bar => progressObserver.observe(bar));
+        }
+
+        // Service card interactions
+        function initServiceCardInteractions() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                    this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+                
+                card.addEventListener('click', function() {
+                    // Add click effect
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        // Service feature animations
+        function animateServiceFeatures() {
+            const features = document.querySelectorAll('.service-feature');
+            
+            const featureObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-delay')) || index * 100;
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, delay);
+                        featureObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            features.forEach(feature => featureObserver.observe(feature));
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+
+        // Button animations
+        function initButtonAnimations() {
+            const buttons = document.querySelectorAll('.btn-animate');
+            
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+                
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        // Service icon animations
+        function initServiceIconAnimations() {
+            const serviceIcons = document.querySelectorAll('.service-icon');
+            
+            serviceIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1) rotate(5deg)';
+                    this.style.background = 'linear-gradient(135deg, #dc2626, #ef4444)';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                    this.style.background = '';
+                });
+            });
+        }
+
+        // Floating elements animation
+        function initFloatingElements() {
+            const floatingElements = document.querySelectorAll('.floating-element');
+            
+            floatingElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.5}s`;
+            });
+        }
+
+        // Image hover effects
+        function initImageHoverEffects() {
+            const images = document.querySelectorAll('.image-hover');
+            
+            images.forEach(image => {
+                image.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                image.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Navigation link animations
+        function initNavigationAnimations() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#dc2626';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('border-red-500')) {
+                        this.style.color = '';
+                    }
+                });
+            });
+        }
+
+        // Add entrance animation to the page
+        function initPageEntrance() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.8s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        }
+
+        // Add scroll-triggered animations for sections
+        function initSectionAnimations() {
+            const sections = document.querySelectorAll('section');
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        const speed = 0.1 + (index * 0.05);
+                        entry.target.style.transition = `transform 0.6s ease-out`;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach((section, index) => {
+                section.style.transform = `translateY(${30 + (index * 10)}px)`;
+                sectionObserver.observe(section);
+            });
+        }
+
+        // Add keyboard navigation support
+        function initKeyboardNavigation() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-navigation');
+            });
+        }
+
+        // Add loading states for images
+        function handleImageLoading() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                
+                img.addEventListener('error', function() {
+                    this.style.opacity = '0.5';
+                    this.style.filter = 'grayscale(100%)';
+                });
+            });
+        }
+
+        // Initialize all animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Services page loaded - Initializing animations');
+            
+            initPageEntrance();
+            animateOnScroll();
+            animateProgressBars();
+            animateServiceFeatures();
+            
+            // Initialize interactive features after a short delay
+            setTimeout(() => {
+                initServiceCardInteractions();
+                initServiceIconAnimations();
+                initButtonAnimations();
+                initFloatingElements();
+                initImageHoverEffects();
+                initNavigationAnimations();
+                initKeyboardNavigation();
+                handleImageLoading();
+            }, 500);
+        });
+
+        // Scroll-triggered section reveal is handled by IntersectionObserver above
+
+        // Add click effects to interactive elements
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.service-card, .service-feature')) {
+                const element = e.target.closest('.service-card, .service-feature');
+                element.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    element.style.transform = '';
+                }, 150);
+            }
+        });
+
+        // Add hover effects to service features
+        document.querySelectorAll('.service-feature').forEach(feature => {
+            feature.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.color = '#dc2626';
+            });
+            
+            feature.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.color = '';
+            });
+        });
+    </script>
+    <!-- AI Chatbot -->
+    <script src="chatbot.js"></script>
+</body>
+</html> 
